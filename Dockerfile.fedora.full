@@ -1,0 +1,10 @@
+FROM bermeitinger-b/fedora-latex:basic
+
+MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
+
+RUN dnf install --assumeyes	texlive-scheme-full
+
+RUN rm -r /var/cache/dnf
+
+WORKDIR /data
+VOLUME ["/data"]
