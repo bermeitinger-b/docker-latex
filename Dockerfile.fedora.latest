@@ -1,8 +1,8 @@
-FROM bermeitingerb/fedora-latex:basic
+FROM bermeitingerb/fedora-latex:full
 
 MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
 
-RUN dnf install --assumeyes	texlive-scheme-full
+RUN dnf upgrade --assumeyes
 
 RUN rm -r /var/cache/dnf
 
