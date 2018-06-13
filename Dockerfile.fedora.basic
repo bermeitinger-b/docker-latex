@@ -9,7 +9,8 @@ RUN dnf upgrade --assumeyes \
 
 
 RUN rm -r /var/cache/dnf; \
-	mkdir /.cache/ && chmod 777 /.cache
+	mkdir /.cache/ && chmod 777 /.cache && \
+	mkdir /.texlive2017 && chmod 777 /.texlive2017
 
 WORKDIR /data
 VOLUME ["/data"]
