@@ -1,4 +1,4 @@
-FROM fedora:27
+FROM fedora:28
 
 MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
 
@@ -10,7 +10,8 @@ RUN dnf install --assumeyes \
 
 
 RUN rm -r /var/cache/dnf; \
-	mkdir /.cache/ && chmod 777 /.cache
+	mkdir /.cache/ && chmod 777 /.cache && \
+	mkdir /.texlive2017/ && chmod 777 /.texlive2017
 
 WORKDIR /data
 VOLUME ["/data"]
