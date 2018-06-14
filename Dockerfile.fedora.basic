@@ -2,11 +2,10 @@ FROM fedora:28
 
 MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
 
-RUN dnf upgrade --assumeyes
-
-RUN dnf install --assumeyes \
-	texlive-scheme-basic \
-	latexmk
+RUN dnf upgrade --assumeyes \
+	&& dnf install --assumeyes \
+		texlive-scheme-basic \
+		latexmk
 
 
 RUN rm -r /var/cache/dnf; \

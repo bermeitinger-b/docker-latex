@@ -2,9 +2,8 @@ FROM bermeitingerb/fedora-latex:full
 
 MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
 
-RUN dnf upgrade --assumeyes
-
-RUN rm -r /var/cache/dnf
+RUN dnf upgrade --assumeyes \
+	&& rm -r /var/cache/dnf
 
 WORKDIR /data
 VOLUME ["/data"]
