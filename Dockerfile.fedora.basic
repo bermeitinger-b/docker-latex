@@ -1,16 +1,22 @@
-FROM fedora:28
+FROM fedora
 
 MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
 
-RUN dnf upgrade --assumeyes \
-	&& dnf install --assumeyes \
-		texlive-scheme-basic \
-		latexmk
+COPY basic.profile /install-tl/basic.profile
+
+RUN dnf upgrade -y && \
+	dnf install -y \
+		wget \
+		perl \
+	&& \
+	wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
+	tar xfa install-tl-unx.tar.gz -C /install-tl --strip-components=1 && \
+	/install-tl/install-tl -profile /install-tl/basic.profile
 
 
 RUN rm -r /var/cache/dnf; \
 	mkdir /.cache/ && chmod 777 /.cache && \
-	mkdir /.texlive2017/ && chmod 777 /.texlive2017
+	mkdir /.texlive2018/ && chmod 777 /.texlive2018
 
 WORKDIR /data
 VOLUME ["/data"]
