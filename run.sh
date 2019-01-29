@@ -1,5 +1,5 @@
 #!/bin/sh
-IMAGE=bermeitingerb/fedora-latex:latest
+IMAGE=bermeitingerb/texlive:full
 
 exec docker run \
 	--memory 1g \
