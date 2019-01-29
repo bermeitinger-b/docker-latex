@@ -1,4 +1,4 @@
 #!/bin/sh
-IMAGE=bermeitingerb/fedora-latex:latest
+IMAGE=bermeitingerb/texlive:full
 
 exec docker run --rm -i --user="$(id -u):$(id -g)" --net=none -v "$PWD":/data "$IMAGE" "$@"
