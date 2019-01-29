@@ -1,4 +1,4 @@
-FROM fedora:28
+FROM fedora
 
 MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
 
