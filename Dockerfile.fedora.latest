@@ -1,9 +1,8 @@
-FROM bermeitingerb/fedora-latex:full
+FROM bermeitingerb/texlive:full
 
 MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
 
-RUN dnf upgrade --assumeyes \
-	&& rm -r /var/cache/dnf
-
-WORKDIR /data
-VOLUME ["/data"]
+RUN dnf upgrade --assumeyes && \
+    rm -r /var/cache/dnf && \
+    tlmgr update --self && \
+    tlmgr update --all
