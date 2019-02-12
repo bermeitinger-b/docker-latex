@@ -1,5 +1,5 @@
 #!/bin/sh
-IMAGE=bermeitingerb/texlive:full
+IMAGE=bermeitingerb/texlive:latest
 
 exec docker run \
 	--memory 1g \
