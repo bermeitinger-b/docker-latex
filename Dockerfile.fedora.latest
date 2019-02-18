@@ -1,4 +1,4 @@
-FROM bermeitingerb/texlive:full
+FROM bermeitingerb/texlive:latest
 
 MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
 
