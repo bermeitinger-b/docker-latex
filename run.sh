@@ -8,6 +8,6 @@ exec docker run \
 	-i \
 	--user="$(id -u):$(id -g)" \
 	--net=none \
-	-v "$PWD":/data \
+	-v "$(pwd)":/data \
 	"$IMAGE" \
 	"$@"
