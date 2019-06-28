@@ -1,0 +1,27 @@
+FROM fedora:30
+
+MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
+
+RUN dnf upgrade -y && \
+	dnf install -y \
+		wget \
+		perl \
+		fontconfig
+
+ARG TEXLIVE
+COPY install.profile /install-tl/install.profile
+
+RUN wget http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/$TEXLIVE/install-tl-unx.tar.gz && \
+    tar xfa install-tl-unx.tar.gz -C /install-tl --strip-components=1 && \
+    /install-tl/install-tl \
+		--profile /install-tl/install.profile \
+		--repository http://www.math.utah.edu/pub/tex/historic/systems/texlive/$TEXLIVE/tlnet-final/ && \
+	rm -rf \
+		/install-tl-unx.tar.gz \
+		/install-tl \
+		/var/cache/dnf
+
+ENV PATH="/usr/local/texlive/bin/x86_64-linux:${PATH}"
+
+WORKDIR /data
+VOLUME ["/data"]

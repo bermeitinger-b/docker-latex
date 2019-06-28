@@ -1,6 +1,0 @@
-FROM bermeitingerb/texlive:basic
-
-MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
-
-RUN tlmgr update --self && \
-    tlmgr install scheme-full
