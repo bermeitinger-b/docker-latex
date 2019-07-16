@@ -1,12 +1,13 @@
 FROM fedora:30
 
-MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
+LABEL maintainer="Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>"
 
 RUN dnf upgrade -y && \
 	dnf install -y \
 		wget \
 		perl \
-		fontconfig
+		fontconfig \
+		ghostscript
 
 ARG TEXLIVE
 COPY install.profile /install-tl/install.profile

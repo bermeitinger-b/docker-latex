@@ -1,6 +1,6 @@
 FROM fedora:30
 
-MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
+LABEL maintainer="Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>"
 
 COPY install.profile /install-tl/install.profile
 
@@ -9,6 +9,7 @@ RUN dnf upgrade -y && \
 		wget \
 		perl \
 		fontconfig \
+		ghostscript \
 	&& \
 	wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
 	tar xfa install-tl-unx.tar.gz -C /install-tl --strip-components=1 && \

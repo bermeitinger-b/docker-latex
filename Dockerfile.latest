@@ -1,6 +1,6 @@
 FROM bermeitingerb/texlive:latest
 
-MAINTAINER Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>
+LABEL maintainer="Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>"
 
 RUN dnf upgrade --assumeyes && \
     rm -r /var/cache/dnf && \
