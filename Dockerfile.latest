@@ -3,6 +3,6 @@ FROM bermeitingerb/texlive:latest
 LABEL maintainer="Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>"
 
 RUN dnf upgrade --assumeyes && \
-    rm -r /var/cache/dnf && \
+    dnf clean all && \
     tlmgr update --self && \
     tlmgr update --all
