@@ -5,13 +5,14 @@ LABEL maintainer="Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>"
 COPY install.profile /install-tl/install.profile
 
 RUN dnf upgrade -y && \
-	dnf install -y \
+    dnf install -y \
+		libnsl \
 		wget \
 		perl \
 		fontconfig \
-		ghostscript \
-	&& \
-	wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
+		ghostscript
+
+RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
 	tar xfa install-tl-unx.tar.gz -C /install-tl --strip-components=1 && \
 	/install-tl/install-tl -profile /install-tl/install.profile && \
 	rm -rf \

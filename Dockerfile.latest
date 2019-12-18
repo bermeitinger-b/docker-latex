@@ -4,5 +4,6 @@ LABEL maintainer="Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>"
 
 RUN dnf upgrade --assumeyes && \
     dnf clean all && \
+    tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet && \
     tlmgr update --self && \
     tlmgr update --all
