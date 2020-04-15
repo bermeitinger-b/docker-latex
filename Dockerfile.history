@@ -8,7 +8,8 @@ RUN dnf upgrade -y && \
 		wget \
 		perl \
 		fontconfig \
-		ghostscript
+		ghostscript \
+	        libxcrypt-compat
 
 ARG TEXLIVE
 COPY install.profile /install-tl/install.profile

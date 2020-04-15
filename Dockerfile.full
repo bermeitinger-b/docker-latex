@@ -10,7 +10,8 @@ RUN dnf upgrade -y && \
 		wget \
 		perl \
 		fontconfig \
-		ghostscript
+		ghostscript \
+		libxcrypt-compat
 
 RUN wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz && \
 	tar xfa install-tl-unx.tar.gz -C /install-tl --strip-components=1 && \
