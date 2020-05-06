@@ -1,4 +1,4 @@
-FROM fedora:latest
+FROM fedora:32
 
 LABEL maintainer="Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>"
 
@@ -9,7 +9,7 @@ RUN dnf upgrade -y && \
 		perl \
 		fontconfig \
 		ghostscript \
-	        libxcrypt-compat
+	    libxcrypt-compat
 
 ARG TEXLIVE
 COPY install.profile /install-tl/install.profile
