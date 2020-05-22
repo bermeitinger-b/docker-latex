@@ -4,21 +4,21 @@ LABEL maintainer="Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>"
 
 RUN dnf upgrade -y && \
     dnf install -y \
-		libnsl \
-		wget \
-		perl \
-		fontconfig \
-		ghostscript \
-	    libxcrypt-compat
+        libnsl \
+        wget \
+        perl \
+        fontconfig \
+        ghostscript \
+        libxcrypt-compat
 
 ARG TEXLIVE
 COPY install.profile /install-tl/install.profile
 
-RUN wget http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/$TEXLIVE/install-tl-unx.tar.gz && \
+RUN wget -4 https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/$TEXLIVE/tlnet-final/install-tl-unx.tar.gz && \
     tar xfa install-tl-unx.tar.gz -C /install-tl --strip-components=1 && \
     /install-tl/install-tl \
 		--profile /install-tl/install.profile \
-		--repository http://www.math.utah.edu/pub/tex/historic/systems/texlive/$TEXLIVE/tlnet-final/ && \
+		--repository https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/$TEXLIVE/tlnet-final/ && \
 	rm -rf \
 		/install-tl-unx.tar.gz \
 		/install-tl \
