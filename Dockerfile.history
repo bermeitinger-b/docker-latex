@@ -1,15 +1,4 @@
-FROM fedora:32
-
-LABEL maintainer="Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>"
-
-RUN dnf upgrade -y && \
-    dnf install -y \
-        libnsl \
-        wget \
-        perl \
-        fontconfig \
-        ghostscript \
-        libxcrypt-compat
+FROM bermeitingerb/texlive:base
 
 ARG TEXLIVE
 COPY install.profile /install-tl/install.profile
@@ -18,13 +7,10 @@ RUN wget -4 https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/$TEXLIVE
     tar xfa install-tl-unx.tar.gz -C /install-tl --strip-components=1 && \
     /install-tl/install-tl \
 		--profile /install-tl/install.profile \
-		--repository https://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/$TEXLIVE/tlnet-final/ && \
+		--repository http://ftp.tu-chemnitz.de/pub/tug/historic/systems/texlive/$TEXLIVE/tlnet-final/ && \
 	rm -rf \
 		/install-tl-unx.tar.gz \
 		/install-tl \
 		/var/cache/dnf
 
 ENV PATH="/usr/local/texlive/bin/x86_64-linux:${PATH}"
-
-WORKDIR /data
-VOLUME ["/data"]
