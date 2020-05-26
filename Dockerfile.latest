@@ -1,9 +1,8 @@
-FROM bermeitingerb/texlive:latest
-
-LABEL maintainer="Bernhard Bermeitinger <bernhard.bermeitinger@gmail.com>"
+ARG IMAGE
+FROM $IMAGE
 
 RUN dnf upgrade --assumeyes && \
     dnf clean all && \
-    tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet && \
     tlmgr update --self && \
-    tlmgr update --all
+    tlmgr update --all && \
+    rm -r /var/cache/dnf
