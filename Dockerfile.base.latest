@@ -1,0 +1,6 @@
+FROM bermeitingerb/texlive:base
+
+RUN dnf upgrade -y && \
+    dnf clean all && \
+    rm -r /var/cache/dnf
+

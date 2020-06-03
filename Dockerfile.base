@@ -11,5 +11,7 @@ RUN dnf upgrade -y && \
         ghostscript \
         libxcrypt-compat
 
+ENV PATH="/usr/local/texlive/bin/x86_64-linux:${PATH}"
+
 WORKDIR /data
 VOLUME ["/data"]

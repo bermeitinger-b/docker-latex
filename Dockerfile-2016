@@ -1,0 +1,16 @@
+FROM bermeitingerb/texlive:base
+
+COPY --from=texlive:2016 /TEXLIVE /TEXLIVE
+
+COPY install.profile /install-tl/install.profile
+
+RUN tar xfa /TEXLIVE/install-tl-unx.tar.gz -C /install-tl --strip-components=1 && \
+    /install-tl/install-tl \
+		--profile /install-tl/install.profile \
+		--repository /TEXLIVE && \
+	rm -rf \
+        /TEXLIVE \
+		/install-tl-unx.tar.gz \
+		/install-tl \
+		/var/cache/dnf
+
