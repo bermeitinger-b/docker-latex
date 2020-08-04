@@ -6,12 +6,12 @@ TEXLIVE="${TEXLIVE:-latest}"
 IMAGE=bermeitingerb/texlive:${TEXLIVE}
 
 exec docker run \
-	--memory 1g \
-	--memory-swap 1g \
+	--memory 4g \
+	--memory-swap 4g \
 	--rm \
-	-i \
+	-it \
 	--user="$(id -u):$(id -g)" \
 	--net=none \
-	-v "$(pwd)":/data \
+	-v "$(pwd)":/home/tex/data \
 	"$IMAGE" \
 	"$@"

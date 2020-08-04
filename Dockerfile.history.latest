@@ -1,6 +1,0 @@
-ARG IMAGE
-FROM $IMAGE
-
-RUN dnf upgrade --assumeyes && \
-    dnf clean all && \
-    rm -r /var/cache/dnf

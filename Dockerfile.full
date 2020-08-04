@@ -1,6 +1,10 @@
+ARG TEXLIVE
+FROM texlive:${TEXLIVE} AS repo
+
+
 FROM bermeitingerb/texlive:base
 
-COPY --from=texlive:2017 /TEXLIVE /TEXLIVE
+COPY --from=repo /TEXLIVE /TEXLIVE
 
 COPY install.profile /install-tl/install.profile
 
@@ -10,7 +14,12 @@ RUN tar xfa /TEXLIVE/install-tl-unx.tar.gz -C /install-tl --strip-components=1 &
 		--repository /TEXLIVE && \
 	rm -rf \
         /TEXLIVE \
-		/install-tl-unx.tar.gz \
 		/install-tl \
 		/var/cache/dnf
 
+USER tex
+
+#ENV PATH="/usr/local/texlive/bin/x86_64-linux:${PATH}"
+
+# Update caches/fonts
+RUN luaotfload-tool --update

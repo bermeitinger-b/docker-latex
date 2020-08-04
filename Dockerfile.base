@@ -10,12 +10,17 @@ RUN dnf upgrade -y && \
         fontconfig \
         ghostscript \
         libxcrypt-compat \
-	gnuplot \
+        gnuplot \
     && \
     dnf clean all && \
     rm -rf /var/cache/dnf
 
 ENV PATH="/usr/local/texlive/bin/x86_64-linux:${PATH}"
 
-WORKDIR /data
-VOLUME ["/data"]
+RUN useradd \
+    --create-home \
+    --home-dir /home/tex \
+    --shell /bin/bash \
+    tex
+
+WORKDIR /home/tex/data

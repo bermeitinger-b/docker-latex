@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -f Dockerfile.base -t bermeitingerb/texlive:base --no-cache .
+docker build -f Dockerfile.base -t bermeitingerb/texlive:base .
