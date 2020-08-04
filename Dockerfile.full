@@ -1,8 +1,10 @@
 ARG TEXLIVE
+
+# Image that holds repository
 FROM texlive:${TEXLIVE} AS repo
 
-
-FROM bermeitingerb/texlive:base
+# Image which installs TeXLive
+FROM bermeitingerb/texlive:base AS install
 
 COPY --from=repo /TEXLIVE /TEXLIVE
 
@@ -17,9 +19,12 @@ RUN tar xfa /TEXLIVE/install-tl-unx.tar.gz -C /install-tl --strip-components=1 &
 		/install-tl \
 		/var/cache/dnf
 
-USER tex
+# Final image without intermediate files
+FROM bermeitingerb/texlive:base
 
-#ENV PATH="/usr/local/texlive/bin/x86_64-linux:${PATH}"
+COPY --from=install /usr/local/texlive /usr/local/texlive
+
+USER tex
 
 # Update caches/fonts
 RUN luaotfload-tool --update
