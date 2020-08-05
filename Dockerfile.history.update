@@ -1,0 +1,9 @@
+ARG IMAGE
+FROM $IMAGE
+
+USER root
+RUN dnf upgrade --assumeyes && \
+    dnf clean all && \
+    rm -r /var/cache/dnf
+
+USER tex
