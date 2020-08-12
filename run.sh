@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TEXLIVE="${TEXLIVE:-latest}"
+TEXLIVE="${TEXLIVE:-2020}"
 
 
 IMAGE=bermeitingerb/texlive:${TEXLIVE}

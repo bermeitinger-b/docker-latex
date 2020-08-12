@@ -9,3 +9,5 @@ RUN dnf upgrade --assumeyes && \
     rm -r /var/cache/dnf
 
 USER tex
+
+RUN luaotfload-tool --update
