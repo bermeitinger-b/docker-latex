@@ -1,16 +1,29 @@
 # docker-latex
-Docker-Latex image for building without the hassle of installing TeXLive
+Docker-Latex image for building without the hassle of installing TeXLive.
 
-## Building the latest
+The base image is `fedora:32`. It is tested with TeXLive 2016, 2017, 2018, 2019, and 2020. Older releases might lack dependencies that are not installed in the base.
 
-- Use `Dockerfile.base` to create the base image (currently Fedora 32 with needed dependencies)
-- Use `Dockerfile.full` to create the full TeXLive image (currently 2020)
-- Use `Dockerfile.latest` to update Fedora as well as TeXLive
+## Building the image for 2020
 
-## About historic images (2016--2019)
-They are created from a rsynced local mirror, so we don't need to download the whole distribution all over again. It's archived anyway and will not change. The contents are in a local image `texlive:<year>` which source is not included here (will be some day).
+- Download the respective TeXLive from the rsync mirror:
+- Build the data-container
+- Build the container
 
-`build_history.sh <year>` creates the historic release from TeXLive <year>. It only supports 2016, 2017, 2018, and 2019. Older releases should be buildable the same way but I do not need them, so I didn't bother.
-There is a release-specific Dockerfile because there might be something that changes through the years. Using build-args doesn't help with cache anyway here.
+```bash
+$ export TEXLIVE=2020
+$ rsync -a --progress -h --delete -z rsync://rsync.dante.ctan.org/CTAN/systems/texlive/tlnet/ texlive-data/$TEXLIVE
+$ ./texlive-data.sh $TEXLIVE
+$ ./texlive.sh $TEXLIVE
+```
 
-`parallel_build_history.sh` uses the tool `parallel` to build the history releases in parallel. They depend on the local `texlive:<year>` image which contains the full rsynced mirror.
+You could now delete the `texlive:2020` container and the rsynced folder (`texlive-data/2020`). (Or keep it if you plan to install dependencies or update the base image.) Updating the base image is the reason for this overhead.
+
+## Historic images
+The main process is the same but the rsync-mirror is different:
+Choose from `TEXLIVE=2016`, `TEXLIVE=2017`, `TEXLIVE=2018`, `TEXLIVE=2019`
+```bash
+$ export TEXLIVE=2019
+$ rsync -a --progress -h --delete -z rsync://texlive.info/historic/systems/texlive/$TEXLIVE/tlnet-final/ texlive-data/$TEXLIVE
+$ ./texlive-data.sh $TEXLIVE
+$ ./texlive.sh $TEXLIVE
+```
