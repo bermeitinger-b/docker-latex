@@ -1,3 +1,6 @@
+This is archived and READ-ONLY. Go to https://gitlab.com/bernhard.bermeitinger/fedora-docker-latex for the newest version.
+
+
 # docker-latex
 Docker-Latex image for building without the hassle of installing TeXLive.
 
