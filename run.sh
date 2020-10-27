@@ -3,7 +3,7 @@
 TEXLIVE="${TEXLIVE:-2020}"
 
 
-IMAGE=bermeitingerb/texlive:${TEXLIVE}
+IMAGE=registry.gitlab.com/bernhard.bermeitinger/fedora-docker-latex:${TEXLIVE}
 
 exec docker run \
 	--memory 4g \
